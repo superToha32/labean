@@ -54,12 +54,14 @@ class DatabaseSeeder extends Seeder
         ]);
         Category::create([
             'slug' => 'others',
-            'name' => 'Другое',
+            'name' => 'Прочее',
         ]);
     }
 
     public function run()
     {
+        $this->createCategories();
+
         Item::create([
             'type' => 'sell',
             'category_id' => 1,

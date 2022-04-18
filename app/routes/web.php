@@ -17,9 +17,7 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/sell', function () {
-    return view('sell');
-});
+Route::get('/sell', [\App\Http\Controllers\ItemController::class, 'index']);
 
 Route::get('/buy', function () {
     return view('buy');
