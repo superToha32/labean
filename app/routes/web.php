@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Models\Item;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,7 +19,9 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/sell', [\App\Http\Controllers\ItemController::class, 'index']);
+Route::get('/sell', [\App\Http\Controllers\ItemController::class, 'getSellItems']);
+
+Route::get('/sell/{id}', [\App\Http\Controllers\ItemController::class, 'openRequestSell']);
 
 Route::get('/buy', function () {
     return view('buy');

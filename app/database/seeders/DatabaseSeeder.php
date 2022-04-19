@@ -70,6 +70,51 @@ class DatabaseSeeder extends Seeder
             'price' => 269.5,
             'currency' => 'USD',
             'amount' => 567,
+            'city' => 'Москва',
+        ]);
+
+        Item::create([
+            'type' => 'sell',
+            'category_id' => 1,
+            'user_id' => 1,
+            'description' => 'Nice ass bro! Хорошая ass бро.',
+            'price' => 269.5,
+            'currency' => 'USD',
+            'amount' => 567,
+            'city' => 'Москва',
+        ]);
+
+        Item::create([
+            'type' => 'sell',
+            'category_id' => 1,
+            'user_id' => 1,
+            'description' => 'Nice ass bro! Хорошая ass бро.',
+            'price' => 269.5,
+            'currency' => 'USD',
+            'amount' => 567,
+            'city' => 'Москва',
+        ]);
+
+        Item::create([
+            'type' => 'sell',
+            'category_id' => 1,
+            'user_id' => 1,
+            'description' => 'Nice ass bro! Хорошая ass бро.',
+            'price' => 269.5,
+            'currency' => 'USD',
+            'amount' => 567,
+            'city' => 'Москва',
+        ]);
+
+        Item::create([
+            'type' => 'sell',
+            'category_id' => 1,
+            'user_id' => 1,
+            'description' => 'Nice ass bro! Хорошая ass бро.',
+            'price' => 269.5,
+            'currency' => 'USD',
+            'amount' => 567,
+            'city' => 'Москва',
         ]);
 
         $user = User::create([

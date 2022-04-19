@@ -22,7 +22,7 @@ return new class extends Migration
             $table->double('price');
             $table->string('currency');
             $table->integer('amount');
-            $table->string('address')->nullable();
+            $table->string('city');
             $table->date("end_time")->nullable();
             $table->timestamps();
         });

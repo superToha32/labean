@@ -14,6 +14,8 @@
         </select>
     </div>
 </div>
-@foreach($items as $item)
-    <x-item :item="$item"/>
-@endforeach
+<div class="flex flex-wrap">
+    @foreach($items as $item)
+        <x-item :item="$item"/>
+    @endforeach
+</div>
