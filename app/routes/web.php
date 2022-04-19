@@ -2,8 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Models\Item;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,24 +15,35 @@ use App\Models\Item;
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
 
-Route::get('/sell', [\App\Http\Controllers\ItemController::class, 'getSellItems']);
+Route::get('/sell', function () {
+    return view('sell');
+})->name('sell');
 
-Route::get('/sell/{id}', [\App\Http\Controllers\ItemController::class, 'openRequestSell']);
+Route::get('/buy', [\App\Http\Controllers\ItemsController::class, 'getSellItems'])->name('buy');
 
-Route::get('/buy', function () {
-    return view('buy');
-});
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
-Route::get('/login', function () {
-    return view('login');
-});
+Route::get('/sell', [\App\Http\Controllers\ItemsController::class, 'getBuyItems']) -> name('sell');
 
-Route::get('/register', function () {
-    return view('register');
-});
+Route::get('/sell/new', function () {
+    return view('newbuyorder');
+})->middleware('auth');
 
-Route::get('/support', function () {
-    return view('support');
-});
+Route::post('/sell/new', [\App\Http\Controllers\ItemsController::class, 'storeBuy'])->middleware('auth');
+
+Route::get('/sell/view/{id}', [\App\Http\Controllers\ItemsController::class, 'openRequestSell']);
+
+Route::post('filters', [\App\Http\Controllers\ItemsController::class, 'setFilters']);
+
+Route::get('/buy/new', function () {
+    return view('newsellorder');
+})->middleware('auth');
+
+Route::post('/buy/new', [\App\Http\Controllers\ItemsController::class, 'storeSell'])->middleware('auth');
+
+
+require __DIR__.'/auth.php';
