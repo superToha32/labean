@@ -19,7 +19,7 @@
         @endif
         <p class="max-w-full h-fit break-words">{{$desc}}</p>
         <div class="text-gray-500">
-            Цена закупки:
+            Оптовая цена:
             <span class="text-blue-500">
             {{$item->price}}
                 @switch($item->currency)

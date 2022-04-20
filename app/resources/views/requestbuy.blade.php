@@ -32,18 +32,18 @@
         </span>
             </div>
             <div class="my-5 text-gray-500">
-                <div class="">Заказчик</div>
+                <div class="">Поставщик</div>
                 <div class="">ФИО: {{$item->user->name}}</div>
                 <div class="">Номер телефона: {{$item->user->number}}</div>
             </div>
             <a href="{{url()->current()}}/{{$item->id}}"
                class="rounded-xl bg-blue-500 hover:bg-blue-600 text-gray-50 px-5 py-1.5">
-                Написать заказчику
+                Написать поставщику
             </a>
         </div>
         <div class="w-1/2">
             <label>
-                <textarea placeholder="Сообщение/вопрос заказчику..." class="shadow rounded-md bg-gray-100 w-full h-5/6 p-3 resize-none text-gray-600"></textarea>
+                <textarea placeholder="Сообщение/вопрос поставщику..." class="shadow rounded-md bg-gray-100 w-full h-5/6 p-3 resize-none text-gray-600"></textarea>
                 <button type="submit" class="mt-5 rounded-xl bg-blue-500 hover:bg-blue-600 text-gray-50 px-5 py-1.5">Отправить запрос</button>
             </label>
         </div>

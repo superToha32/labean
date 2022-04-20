@@ -45,5 +45,14 @@ Route::get('/buy/new', function () {
 
 Route::post('/buy/new', [\App\Http\Controllers\ItemsController::class, 'storeSell'])->middleware('auth');
 
+Route::get('/buy/view/{id}', [\App\Http\Controllers\ItemsController::class, 'openRequestBuy']);
+
+Route::get('/sell/view/{id}/redact', [\App\Http\Controllers\ItemsController::class, 'openRedactSell'])->middleware('auth');
+Route::post('/sell/view/{id}/redact', [\App\Http\Controllers\ItemsController::class, 'redactSell'])->middleware('auth');
+Route::post('/sell/view/{id}/redact/delete', [\App\Http\Controllers\ItemsController::class, 'redactBuyDelete'])->middleware('auth');
+
+Route::get('/buy/view/{id}/redact', [\App\Http\Controllers\ItemsController::class, 'openRedactBuy'])->middleware('auth');
+Route::post('/buy/view/{id}/redact', [\App\Http\Controllers\ItemsController::class, 'redactBuy'])->middleware('auth');
+Route::post('/buy/view/{id}/redact/delete', [\App\Http\Controllers\ItemsController::class, 'redactSellDelete'])->middleware('auth');
 
 require __DIR__.'/auth.php';

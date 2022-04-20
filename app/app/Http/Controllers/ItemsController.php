@@ -18,7 +18,7 @@ class ItemsController extends Controller
 
         if ($keywords != null) {
             $items = $items->where('id', '-1');
-            foreach(explode(' ', $keywords) as $keyword) {
+            foreach (explode(' ', $keywords) as $keyword) {
                 $items = $items->orWhere(function ($query) use ($keyword, $type) {
                     $query->where('type', $type)->where('description', 'like', '%' . $keyword . '%');
                 });
@@ -124,7 +124,7 @@ class ItemsController extends Controller
         $attributes['user_id'] = Auth::id();
         Item::create($attributes);
 
-        return redirect('/sell');
+        return redirect('/buy');
     }
 
     public function setFilters()
@@ -135,5 +135,87 @@ class ItemsController extends Controller
         session()->flash('currency', request()->get('currency'));
         session()->flash('keywords', request()->get('keywords'));
         return redirect()->back();
+    }
+
+    public function openRedactSell($id)
+    {
+        $item = Item::findOrFail($id);
+        if ($item->user->id != Auth::id() || $item->type == 'sell') abort(403);
+        return view('sellredact', ['item' => $item]);
+    }
+
+    public function openRedactBuy($id)
+    {
+        $item = Item::findOrFail($id);
+        if ($item->user->id != Auth::id() || $item->type == 'buy') abort(403);
+        return view('buyredact', ['item' => $item]);
+    }
+
+    public function redactBuy($id)
+    {
+        $item = Item::findOrFail($id);
+        if ($item->user->id != Auth::id() || $item->type == 'buy') abort(403);
+
+        $attributes = request()->validate([
+            'description' => ['required', 'string', 'min:10', 'max:1024'],
+            'price' => ['required'],
+            'currency' => ['required', 'string'],
+            'amount' => ['required', 'integer'],
+            'city' => ['required', 'string', 'max:32'],
+        ]);
+
+        $item = Item::findOrFail($id);
+
+        $item->description = $attributes['description'];
+        $item->price = $attributes['price'];
+        $item->currency = $attributes['currency'];
+        $item->amount = $attributes['amount'];
+        $item->city = $attributes['city'];
+
+        $item->update();
+        return redirect('/');
+    }
+
+    public function redactSell($id)
+    {
+        $item = Item::findOrFail($id);
+        if ($item->user->id != Auth::id() || $item->type == 'buy') abort(403);
+
+        $attributes = request()->validate([
+            'description' => ['required', 'string', 'min:10', 'max:1024'],
+            'price' => ['required'],
+            'currency' => ['required', 'string'],
+            'amount' => ['required', 'integer'],
+            'city' => ['required', 'string', 'max:32'],
+        ]);
+
+        $item = Item::findOrFail($id);
+
+        $item->description = $attributes['description'];
+        $item->price = $attributes['price'];
+        $item->currency = $attributes['currency'];
+        $item->amount = $attributes['amount'];
+        $item->city = $attributes['city'];
+
+        $item->update();
+        return redirect('/');
+    }
+
+    public function redactSellDelete($id)
+    {
+        $item = Item::findOrFail($id);
+        if ($item->user->id != Auth::id() || $item->type == 'buy') abort(403);
+
+        $item->delete();
+        return redirect('/');
+    }
+
+    public function redactBuyDelete($id)
+    {
+        $item = Item::findOrFail($id);
+        if ($item->user->id != Auth::id() || $item->type == 'sell') abort(403);
+
+        $item->delete();
+        return redirect('/');
     }
 }

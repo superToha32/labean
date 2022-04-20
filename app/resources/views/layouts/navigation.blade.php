@@ -16,7 +16,7 @@
                         {{ __('Поставщику') }}
                     </x-nav-link>
                     <x-nav-link :href="route('buy')" :active="request()->routeIs('buy')">
-                        {{ __('Закупщику') }}
+                        {{ __('Заказчику') }}
                     </x-nav-link>
                 </div>
             </div>

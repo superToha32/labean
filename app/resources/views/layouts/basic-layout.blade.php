@@ -31,7 +31,7 @@
                                     {{ __('Поставщику') }}
                                 </x-nav-link>
                                 <x-nav-link :href="route('buy')" :active="request()->routeIs('buy')">
-                                    {{ __('Закупщику') }}
+                                    {{ __('Заказчику') }}
                                 </x-nav-link>
                             </div>
                         </div>
@@ -106,7 +106,7 @@
                             {{ __('Поставщику') }}
                         </x-responsive-nav-link>
                         <x-responsive-nav-link :href="route('buy')" :active="request()->routeIs('buy')">
-                            {{ __('Закупщику') }}
+                            {{ __('Заказчику') }}
                         </x-responsive-nav-link>
                     </div>
 
@@ -158,7 +158,7 @@
             <nav class="">
                 <ul class="flex flex-col md:flex-row justify-between">
                     <li class="mr-5"><a class="hover:text-blue-600" href="{{URL::to('/sell')}}">Поставщику</a></li>
-                    <li class="mr-5"><a class="hover:text-blue-600" href="{{URL::to('/buy')}}">Закупщику</a></li>
+                    <li class="mr-5"><a class="hover:text-blue-600" href="{{URL::to('/buy')}}">Заказчику</a></li>
                     <li><a class="hover:text-blue-600" href="{{URL::to('/support')}}">Поддержка</a></li>
                 </ul>
             </nav>
